@@ -1,0 +1,37 @@
+<section class="container">
+    <!-- ver si puedo poner un solo alert -->
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="alertCreate">
+        <strong>POST insertado correctamente</strong>
+        <button type="button" (click)="quitarAlert('create')" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close"></button>
+    </div>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="alertDelete">
+        <strong>POST borrado correctamente</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close" (click)="quitarAlert('delete')"></button>
+    </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert" *ngIf="alertUpdate">
+        <strong>POST actualizado correctamente</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"
+            aria-label="Close" (click)="quitarAlert('update')"></button>
+    </div>
+    <h2 class="my-4 text-white fw-bold">LISTADO DE NOTICIAS</h2>
+
+    <div class="row g-4">
+        <article class="col-12 col-md-4" *ngFor="let post of arrPost">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{post?.title}}</h5>
+                    <p class="card-text">{{post?.body}}</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-warning" [routerLink]="['/posts', post?.id]">Leer mas</a>
+                        <a href="#" class="btn btn-outline-warning text-dark"
+                            [routerLink]="['/updatePost', post?.id]">Actualizar</a>
+                        <a href="#" class="btn btn-outline-danger text-dark"
+                            [routerLink]="" (click)="borrarPost(post?.id)">Borrar</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
